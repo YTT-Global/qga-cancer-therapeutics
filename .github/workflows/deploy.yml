@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code Repository Base
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4

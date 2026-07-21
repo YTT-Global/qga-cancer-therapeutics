@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security or safety-logic vulnerability
+    url: mailto:accounts@ytt.global
+    about: Do not open a public issue for security or safety-logic issues — email us directly instead. See SECURITY.md.

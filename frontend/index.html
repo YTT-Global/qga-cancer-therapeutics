@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YTT Global - QGA Oncology Console</title>
+    <script>
+      // Applies the stored/system theme before React mounts, so there's no
+      // flash of the wrong theme on load. Mirrors the logic in useTheme().
+      (function () {
+        try {
+          var stored = localStorage.getItem('qga-theme') || 'system';
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isLight = stored === 'light' || (stored === 'system' && !prefersDark);
+          document.documentElement.classList.toggle('light', isLight);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="overflow-x-hidden bg-[#0B0F19] text-gray-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

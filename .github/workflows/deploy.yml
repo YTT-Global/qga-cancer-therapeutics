@@ -1,0 +1,35 @@
+name: Build and Deploy Frontend Landing Page
+
+on:
+  push:
+    branches: [ main ] # Triggers automation every time you push code updates to main
+
+permissions:
+  contents: write # Grants the pipeline secure authorization to create and write the gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository Base
+        uses: actions/checkout@v4
+
+      - name: Initialize Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json # Targets cache markers correctly inside subfolders
+
+      - name: Build Web Application Bundles
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      - name: Deploy Production Assets to GitHub Pages Branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: frontend/dist # Grabs only the compiled distribution bundle
+          branch: gh-pages # Deploys straight to the target web branch
+          clean: true

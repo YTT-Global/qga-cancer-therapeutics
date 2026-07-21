@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Tech-Grid Backdrop Effect */
+.bg-grid-pattern {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+}
+html.light .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+}
+
+/* Keyframes for smooth landing page telemetry injection */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(8px); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-log-entry {
+  animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Breathing Neon Ambient Glow Effect for the Quantum Core Card */
+@keyframes neonPulse {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.2); box-shadow: 0 0 15px rgba(16, 185, 129, 0.03); }
+  50% { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 25px rgba(16, 185, 129, 0.12); }
+}
+.quantum-card-glow {
+  animation: neonPulse 4s infinite ease-in-out;
+}
+
+/* Universal text-color/bg transition layouts */
+body {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* body's classes live in the static index.html, not JSX, so they can't be
+   reached by the light: Tailwind variant registered in tailwind.config.js.
+   Every other light: override lives directly on components as a normal
+   Tailwind utility now that `light` is a real registered variant. */
+html.light body { background-color: #F9FAFB; color: #111827; }
